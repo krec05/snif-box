@@ -4,13 +4,17 @@ vagrant base box from scratch read [here](docs/CreateVagrantBaseBox.md).
 
 ## Content
 * [Requirements](#requirements)
-  * [Software](#Software)
-  * [SSH key to clone git project](#SSH key to clone git project)
-* [Initial Steps](#Initial Steps)
-  * [Clone the repository to host](#Clone the repository to host)
-  * [Configuration of start script](#Configuration of start script)
-* [Start SNIF Box](#Start SNIF Box) 
-* [Development at the beating heart](#Development at the beating heart) 
+  * [Software](#software)
+  * [SSH key to clone git project](#ssh-key-to-clone-git-project)
+* [Initial Steps](#initial-steps)
+  * [Clone the repository to host](#clone-the-repository-to-host)
+  * [Configuration of start script](#configuration-of-start-script)
+* [Start SNIF Box](#start-snif-box) 
+* [Development at the beating heart](#development-at-the-beating-heart) 
+* [Usage of SNIF-Box](#usage-of-snif-box)
+  * [Re-provisioning](#re-provisioning)
+  * [Usage Thought](#usage-thought)
+  * [Troubleshooting](docs/trouble_shooting.md)
 
 ## Requirements
 ### Software
@@ -18,7 +22,7 @@ You need the following software on your host system
 * [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 * [Vagrant](https://www.vagrantup.com/downloads.html)
 * [Git](https://github.com/git-guides/install-git)
-###SSH key to clone git project
+### SSH key to clone git project
 You need to create an SSH key on your host system to clone the repository with SNIFBOX files.
 How to do this is described [here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh).
 
@@ -93,59 +97,33 @@ Then this role can also be executed separately.
 - ansible-playbook ansible/setup-playbook_name.yml --tags rollen_tag
 ```
 
+## Usage of SNIF-Box
+The password for the DevBox is **vagrant**, as is typical for most Vagrant boxes.
 
+For the desktop shortcuts to work in the DevBox, you have to right-click once in the 
+right mouse click in the menu to select `Allow Launching`.
 
+### Re-provisioning
+In order to apply new features and bug fixes in the configuration to your own SNIF box, 
+it should be should be re-provisioned regularly (preferably at every startup). This is 
+done by using the shortcut. One can start the virtual machine created by Vagrant as usual 
+over VirtualBox menu to start, stop or save its state. However, it is recommended to do 
+this to do this via the shortcut.
 
+### Usage Thought
+The SNIF box is designed as a disposable solution. Every user should be able to simply 
+throw away the virtual machine at any time and create a replacement. The 
+**urgent recommendation** is therefore the following:
 
-# Old Stuff need to integrate in README
+When you manually install new programs into the SNIF box ask yourself two questions:
+* Do others on my team need this feature?
+* How much effort will it take to reinstall if the SNIF box has to be thrown away?
 
-#BI DevBox
+Often the answer will be that it is well worth automating the installation of new 
+programs. (actually always :wink:). In that case, be encouraged to create new roles in 
+the `ansible/roles` folder. These roles can then be included in the playbook.
 
-##Inhaltsverzeichnis
-- [Nutzung](#Nutzung)
-    * [Erneutes Provisionieren](#Erneutes Provisionieren)
-- [Nutzungsgedanke](#nutzungsgedanke)
-- [Weiterentwicklung der DevBox](#weiterentwicklung)
-- [Weiterführende Themen](#Weiterführende Themen)
-    * [Troubleshooting](#Troubleshooting)
+Documentation on Ansible can be found [here](https://docs.ansible.com/ansible/latest/user_guide/index.html).
 
-##Nutzung
-Das Passwort für die DevBox lautet **vagrant**, wie es für die meisten Vagrant Boxen typisch ist.
-
-Damit die Desktop Verknüpfungen in der DevBox vom DBVisualizer und der Jetbrain Toolbox funktionieren,
-muss per rechten Mausklick in dem Menü das `Allow Launching` ausgewählt werden.
-
-###Erneutes Provisionieren
-Um Neuerungen und Bugfixes in der Konfiguration in die eigene DevBox zu übernehmen, sollte sie
-regelmäßig (gerne bei jedem Start) neu provisioniert werden. Dies geschieht durch die Verwendung der 
-Verknüpfung. Man kann die von Vagrant erstellte virtuelle Maschine wie üblich über
-das Menü von VirtualBox starten, stoppen oder ihren Zustand speichern. Empfohlen ist es aber, dies
-über die Verknüpfung zu tun.
-
-
-##Nutzungsgedanke
-Die DevBox ist als Wegwerf-Lösung konzipiert. Jeder Nutzer soll in die Lage versetzt werden jederzeit
-einfach die virtuelle Maschine wegwerfen zu können und einen Ersatz zu erschaffen.
-Die **dringende Empfehlung** ist daher folgende:
-
-Wenn ihr händisch neue Programme in die DevBox installiert stellt euch zwei Fragen:
-* Brauchen noch andere in meinem Team dieses Feature?
-* Wie aufwendig ist die erneute Installation, wenn die DevBox weggeschmissen werden muss?
-
-Oft wird die Antwort sein, dass es sich durchaus lohnt die Installation neuer Programme zu
-automatisieren. (eigentlich immer :wink:). In dem Fall sei ermutigt neue Rollen im Ordner `ansible/roles`
-zu erstellen. Diese Rollen können dann im Playbook eingebunden werden.
-
-Eine Dokumentation zu Ansible befindet sich [hier](https://docs.ansible.com/ansible/latest/user_guide/index.html).
-
-
-##Weiterentwicklung
-Erweiterungen sind immer willkommen!
-
-Schaut bitte, dass in Pull-Request ein paar der letzten Committer aufgenommen werden um das Wissen über
-neue Dinge zu verteilen.
-
-##Weiterführende Themen
-
-###Troubleshooting
+### Troubleshooting
 [Troubleshooting](docs/trouble_shooting.md)
