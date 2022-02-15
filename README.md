@@ -3,16 +3,17 @@ Development Environment used in SNIF development context. How to create an own
 vagrant base box from scratch read [here](docs/CreateVagrantBaseBox.md).
 
 ## Content
-*[Requirements](#requirements)
-  *[Software](#Software)
-  *[SSH key to clone git project](#SSH key to clone git project)
-*[Initial Steps](#Initial Steps)
-  *[Clone the repository to host](#Clone the repository to host)
-  *[Configuration of start script](#Configuration of start script)
-*[Start SNIF Box](#Start SNIF Box) 
+* [Requirements](#requirements)
+  * [Software](#Software)
+  * [SSH key to clone git project](#SSH key to clone git project)
+* [Initial Steps](#Initial Steps)
+  * [Clone the repository to host](#Clone the repository to host)
+  * [Configuration of start script](#Configuration of start script)
+* [Start SNIF Box](#Start SNIF Box) 
+* [Development at the beating heart](#Development at the beating heart) 
 
-##Requirements
-###Software
+## Requirements
+### Software
 You need the following software on your host system
 * [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 * [Vagrant](https://www.vagrantup.com/downloads.html)
@@ -21,11 +22,11 @@ You need the following software on your host system
 You need to create an SSH key on your host system to clone the repository with SNIFBOX files.
 How to do this is described [here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh).
 
-##Initial Steps
+## Initial Steps
 The following steps only need to be performed during the initial setup and after that this section can be
 skipped.
 
-###Clone the repository to host
+### Clone the repository to host
 In order to start the SNIF box, the code resources from the Git repository are required. How a repository 
 can be cloned is described 
 [here](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository). 
@@ -33,7 +34,7 @@ The following values can be used for the placeholders
 * YOUR-USERNAME: krec05
 * YOUR-REPOSITORY: snif-box
 
-###Configuration of start script
+### Configuration of start script
 For the configuration there are two different possibilities, either with a PowerShell script or with a 
 Bash script. For the use of the PowerShell script additional requirements are to be fulfilled, which are 
 described [here](https://git-scm.com/book/en/v2/Appendix-A%3A-Git-in-Other-Environments-Git-in-PowerShell).
@@ -45,7 +46,7 @@ described [here](https://git-scm.com/book/en/v2/Appendix-A%3A-Git-in-Other-Envir
    2. bash: `C:\WindowsSystem32\cmd.exe /c ""C:\Program Files\Git\bin\sh.exe" [filepath]\snif_box_provision.sh"`
 
 
-##Start SNIF Box
+## Start SNIF Box
 A simple double-click on the shortcut (created in the Configuration of start script section) starts the 
 provisioning process. After that, the box is set up by Vagrant and provisioning with Ansible takes place.
 
@@ -76,45 +77,6 @@ something like the following output.
     devbox: localhost                  : ok=26   changed=0    unreachable=0    failed=0    skipped=19   rescued=0    ignored=0
 ``` 
 
-
-
-
-# Old Stuff need to integrate in README
-
-
-## Add SSH Key for Git
-An SSH key must be generated on your host system. Best with the following command.
-
-```bash
-ssh-keygen -t rsa -C "your_email@example.com"
-```
-
-It is important that the SSH key gets the name *** snif_git ***. The private key must be copied to the following directory.
-```bash
-./ansible/roles/GitConfig/files/
-```
-The public key must be made known to the remote repository of your version control system.
-
-## Start SnifBox
-To do this on the easiest way, just run the bash script ```snifbox_provision.sh```.
-
-## Create Desktop Shortcut
-To prepare a desktop shortcut, some preparation has already been made. Others
-still have to be done manually.
-
-### Desktop Shortcut Windows
-First of all, the shell script ***./snifbox_provision.sh*** need to be adapted.
-In the second line, the  path sould show to child ***ansible*** of current dir.
-
-The window shortcut ***./SnifBox Start.Ink*** need to be adapted too. For this,
-the properties of the shortcut must be opened. Then the last path to the shell
-script ***devbox_provision.sh*** has to be adjusted. You may also have to adjust
-the path to ***Git\bin\sh.exe***. Lastly, the path to execute in must be adapted
-to the current directory.
-
-Maybe it is necessary to adapt the icon of that shortcut. The icon is
-***VirtualBox.ico***.
-
 ## Development at the beating heart
 Ansible roles can also be developed within the DevBox. To test single roles you
 can temporarily create your own playbook or you can work with tags.
@@ -132,6 +94,10 @@ Then this role can also be executed separately.
 ```
 
 
+
+
+
+# Old Stuff need to integrate in README
 
 #BI DevBox
 
