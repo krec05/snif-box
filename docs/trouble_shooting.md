@@ -1,17 +1,14 @@
-#Troubleshooting
-Bei der Provisionierung einer DevBox kann manchmal auch etwas schief gehen.
-Die folgenden Abschnitte ermöglichen hoffentlich den ein oder anderen Fehler schnell aus der Welt zu 
-schaffen. Wenn das Problem hier noch nicht aufgeführt ist, sollte es im Sinne der Wissensverteilung hier 
-mit aufgenommen werden.
+# Troubleshooting
+When provisioning a SNIF box, things can sometimes go wrong. The following sections will 
+hopefully allow you to quickly sort out most of the errors. If the problem is not yet 
+listed here, it should be included here for the benefit of knowledge distribution.
 
-##Table Of Contents
-- [Die Provisionierung war nicht erfolgreich](#Die Provisionierung war nicht erfolgreich)
-- [Der Netzwerkadapter spinnt unter Windows](#Der Netzwerkadapter spinnt unter Windows)
+## Content
+* [Failed Provisioning](#failed-provisioning)
+* [The network adapter fails under Windows](#the-network-adapter-fails-under-windows)
 
-##Die Provisionierung war nicht erfolgreich
-
-Wenn die Provisionierung durch Ansible nicht erfolgreich war werden die letzten Zeile ungefähr so 
-aussehen:
+## Failed Provisioning
+If the provisioning by Ansible was not successful, the last lines will look something like this:
 ```shell script
 <pre>
     devbox: PLAY RECAP *********************************************************************
@@ -19,10 +16,10 @@ aussehen:
 </pre>
 ```
 
-Sofern eine Rolle gescheitert ist werden alle folgenden Rollen nicht weiter ausgeführt. Das heißt die 
-Provisionierung war nicht erfolgreich. Die Aufgabe ist jetzt natürlich herauszufinden woran das liegt!
+If a role fails, all subsequent roles will not be executed. This means that the provisioning was 
+not successful. The challenge now is of course to find out why this happened!
 
-Beispiel:
+Example:
 ```shell script
 <pre>
     devbox: TASK [ConfPRD : download hive config] ******************************************    devboxlunchtest20200227112402f-ocp: fatal: [localhost]: FAILED! => 
@@ -31,13 +28,12 @@ Beispiel:
     devbox: PLAY RECAP *********************************************************************    devboxlunchtest20200227112402f-ocp: localhost                  : ok=167  changed=118  unreachable=0    failed=1    skipped=8    rescued=0    ignored=5
 </pre>
 ```
+Here the end of the playbook tells you that it has failed and that the last roll has failed. Here 
+the consequence is quite simple ... 404 probably means the resource is not there. In this way you 
+have to work your way to the bugs.
 
-Hier sagt dir das Ende vom Playbook das es gescheitert ist und dir wird auch gleich mitgeteilt, dass die 
-letzte Rolle gescheitert ist. Hier ist die Folge recht einfach ... 404 heißt wohl die Ressource ist 
-nicht da. Auf diese Art und Weise muss man sich dann an die Fehler ranarbeiten.
-
-##Der Netzwerkadapter spinnt unter Windows
-Wenn bei der Provisionierung etwas Ähnliches wie:
+## The network adapter fails under Windows
+If in provisioning something similar appears to:
 ```shell script
 <pre>
     Stderr: VBoxManage.exe: error: Failed to open/create the internal network 'HostInterfaceNetworking-VirtualBox Host-Only Ethernet Adapter' (VERR_INTNET_FLT_IF_NOT_FOUND).
@@ -45,14 +41,13 @@ Wenn bei der Provisionierung etwas Ähnliches wie:
     VBoxManage.exe: error: Details: code E_FAIL (0x80004005), component ConsoleWrap, interface IConsole
 </pre> 
 ```
+your windows has updated itself and you have a pretty solid problem :dizzy_face:.
 
-erscheint hat eurer Windows sich geupdatet und ihr habt ein recht solides Problem :dizzy_face:.
-
-Folgendes hat beim letzten mal geholfen:
-
-* VirtualBox deinstallieren
-* Rechner neu starten
-* VirtualBox neu installieren
-* Rechner neu starten
-* ... neu versuchen
+The following helped last time:
+* Uninstall VirtualBox
+* Restart computer
+* Reinstall VirtualBox
+* Restart computer
+* ... try again
 * ***don't blame me, blame Windows***
+
