@@ -1,0 +1,6 @@
+version: "1.22.10970"
+file: "jetbrains-toolbox.tar.gz"
+target_folder: "/home/vagrant/.local/share/JetBrains"
+tmp_folder: "/tmp/jetbrains-toolbox-{{ version }}"
+generic_url: "https://download.jetbrains.com/toolbox/jetbrains-toolbox-{{ version }}.tar.gz"
+checksum: "sha256:3b2cfc340d9116699d9e83173ea79d325df7f940d6f446d34076833608a99139"

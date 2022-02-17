@@ -4,21 +4,17 @@
   strategy: debug
 
   roles:
-#    - role: guest_additions
-#    - role: monitor_resolution
-#      vars:
-#        witdth: 1920
-#        height: 1080
-#    - role: automatic-login
-#    - role: apt-install-items
-#      packages:
-#        - vim
-#        - curl
-#        - unzip
-#        - git
-#        - terminator
-#    - role: docker
-#    - role: notepad-plus-plus
-#    - role: chrome
-#    - role: jetbrains-toolbox
+    - role: apt-install-items
+      packages:
+        - vim
+        - curl
+        - unzip
+        - git
+        - terminator
+        - virtualbox
+    - role: guest_additions
+    - role: automatic-login
+    - role: docker
+    - role: notepad-plus-plus
+    - role: jetbrains-toolbox
 #    - role: eclipse

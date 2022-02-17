@@ -1,0 +1,14 @@
+---
+- name: "set AutomaticLoginEnable"
+  become: yes
+  replace:
+    path: /etc/gdm3/custom.conf
+    regexp: "^#\\s*AutomaticLoginEnable = false"
+    replace: 'AutomaticLoginEnable=True'
+
+- name: "set AutomatcLogin"
+  become: yes
+  replace:
+    path: /etc/gdm3/custom.conf
+    regexp: "^#\\s*AutomaticLogin = user1"
+    replace: 'AutomaticLogin=vagrant'

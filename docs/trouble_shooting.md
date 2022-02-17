@@ -4,8 +4,23 @@ hopefully allow you to quickly sort out most of the errors. If the problem is no
 listed here, it should be included here for the benefit of knowledge distribution.
 
 ## Content
+* [Unable to acquire lock](#unable-to-acquire-lock)
 * [Failed Provisioning](#failed-provisioning)
 * [The network adapter fails under Windows](#the-network-adapter-fails-under-windows)
+
+## Unable to acquire lock
+If Ansible is not able to acquire all the necessary resources, the following error will be printed in Terminal.
+```shell script
+    snif-box: E: Could not get lock /var/lib/dpkg/lock-frontend. It is held by process 2994 (unattended-upgr)
+    snif-box: E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), is another process using it?
+The SSH command responded with a non-zero exit status. Vagrant
+assumes that this means the command failed. The output for this command
+should be in the log above. Please read the output to determine what
+went wrong.
+Press enter to continue
+```
+
+In this case, the best solution is to close the already started VM and start the provisioning script again.
 
 ## Failed Provisioning
 If the provisioning by Ansible was not successful, the last lines will look something like this:

@@ -1,0 +1,36 @@
+- name: Check jetbrains toolbox already is present
+  stat:
+    path: "{{ target_folder }}/bin/jetbrains-toolbox-{{ version }}"
+  register: binFile
+
+- block:
+    - name: create target folder
+      file:
+        path: "{{ target_folder }}/bin"
+        state: directory
+        recurse: yes
+
+    - name: "Download archive"
+      get_url:
+        url: "{{ generic_url }}"
+        dest: "/tmp/{{ file }}"
+        checksum: "{{ checksum }}"
+
+    - name: "extact tar"
+      unarchive:
+        src: "/tmp/{{ file }}"
+        dest: "{{ target_folder }}/bin"
+        mode: u+x,g+x,o+x
+
+    - name: Add desktop entry (german)
+      ignore_errors: yes
+      template:
+        src: files/eclipse.desktop.template
+        dest: "/home/vagrant/Schreibtisch/jetbrains-toolbox.desktop"
+
+    - name: Add desktop entry (english)
+      ignore_errors: yes
+      template:
+        src: files/eclipse.desktop.template
+        dest: "/home/vagrant/Desktop/jetbrains-toolbox.desktop"
+  when: not binFile.stat.exists

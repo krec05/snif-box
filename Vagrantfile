@@ -2,9 +2,9 @@
 # vi: set ft=ruby :
 
 Vagrant.configure(2) do |config|
-  config.vm.define "devbox" do |dev|
+  config.vm.define "snif-box" do |dev|
       dev.vm.box = "krec/ubuntu2004-x64"
-      dev.vm.box_version = "0.0.1"
+      dev.vm.box_version = "0.0.2"
       dev.vm.box_download_insecure = true
 
 	  dev.vm.provider "virtualbox" do |vb|

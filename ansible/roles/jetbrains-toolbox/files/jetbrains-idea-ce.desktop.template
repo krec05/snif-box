@@ -1,0 +1,10 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Type=Application
+Name=IntelliJ Toolbox
+Exec={{ target_folder }}/bin/jetbrains-toolbox-{{ version }}/jetbrains-toolbox
+Terminal=false
+StartupNotify=true
+Comment=The Drive to Develop
+Categories=Development;IDE;
+Icon={{ target_folder }}/Toolbox/toolbox.svg

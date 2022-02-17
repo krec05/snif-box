@@ -1,0 +1,6 @@
+---
+- name: "Install Notepad++"
+  become: true
+  snap:
+    name: notepad-plus-plus
+    state: present

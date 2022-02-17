@@ -1,0 +1,5 @@
+---
+- name: "get all packages"
+  no_log: true
+  package_facts:
+    manager: "auto"
