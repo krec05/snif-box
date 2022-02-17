@@ -44,10 +44,9 @@ Bash script. For the use of the PowerShell script additional requirements are to
 described [here](https://git-scm.com/book/en/v2/Appendix-A%3A-Git-in-Other-Environments-Git-in-PowerShell).
 1. copy the script snif_box_provision.sh or snif_box_provision.ps1 into the parent directory.
 2. replace the value for <REPO_WHERE_THE_DEVBOX_LIVES> in the script
+    * The path in windows `C:\Users\krec` is written like `/c/Users/krec`
 3. create a new shortcut
-4. specify the location of the shortcut
-   1. power shell: `%windir%\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -File "[filepath]\snif_box_provision.ps1"`
-   2. bash: `C:\WindowsSystem32\cmd.exe /c ""C:\Program Files\Git\bin\sh.exe" [filepath]\snif_box_provision.sh"`
+4. specify the location of the shortcut: `C:\Windows\System32\cmd.exe /c ""%programfiles%\Git\bin\sh.exe" "[filepath]\snif_box_provision.sh"`
 
 
 ## Start SNIF Box
